@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫耳朵（麻食）——传统美食介绍</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff9f0 0%, #ffe6cc 100%);
+            color: #5a3921;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            cursor: none;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+        
+        .cat-title {
+            font-size: 4rem;
+            color: #ff6b35;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0 #ffd8b8;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .cat-title::before,
+        .cat-title::after {
+            content: "🐾";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+        }
+        
+        .cat-title::before {
+            left: -50px;
+        }
+        
+        .cat-title::after {
+            right: -50px;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #8c5e46;
+            margin-bottom: 30px;
+        }
+        
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 50px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: #e05a00;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px dotted #ffb07c;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: #ff6b35;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .info-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff9a3d, #ff6b35);
+        }
+        
+        .info-card h3 {
+            color: #ff6b35;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .info-card ul {
+            padding-left: 20px;
+        }
+        
+        .info-card li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .info-card li::before {
+            content: "🐾";
+            position: absolute;
+            left: -20px;
+        }
+        
+        .qrcode-section {
+            text-align: center;
+            margin: 60px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qrcode-container {
+            display: inline-block;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            position: relative;
+            border: 2px dashed #ff9a3d;
+        }
+        
+        .qrcode-label {
+            display: block;
+            font-size: 1.2rem;
+            color: #e05a00;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .qrcode {
+            width: 180px;
+            height: 180px;
+            background: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 0.9rem;
+            margin: 0 auto;
+            border-radius: 10px;
+            flex-direction: column;
+        }
+        
+        .qrcode i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            color: #8c5e46;
+            border-top: 2px dashed #ffb07c;
+        }
+        
+        /* 小猫耳朵光标 */
+        .cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cat-ear {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 25px solid #ff9a3d;
+            border-radius: 50% 50% 0 0;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .cat-ear.left {
+            transform: translateX(-150%) rotate(-20deg);
+        }
+        
+        .cat-ear.right {
+            transform: translateX(50%) rotate(20deg);
+        }
+        
+        .cursor-circle {
+            width: 12px;
+            height: 12px;
+            background: #ff6b35;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .cat-title {
+                font-size: 2.5rem;
+            }
+            
+            .cat-title::before,
+            .cat-title::after {
+                font-size: 1.5rem;
+            }
+            
+            .cat-title::before {
+                left: -30px;
+            }
+            
+            .cat-title::after {
+                right: -30px;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero {
+                flex-direction: column;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .cat-paw {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- 小猫耳朵光标 -->
+    <div class="cursor">
+        <div class="cat-ear left"></div>
+        <div class="cat-ear right"></div>
+        <div class="cursor-circle"></div>
+    </div>
+    
+    <!-- 背景猫爪装饰 -->
+    <div class="cat-paw" style="top: 10%; left: 5%;">🐾</div>
+    <div class="cat-paw" style="top: 15%; right: 10%;">🐾</div>
+    <div class="cat-paw" style="bottom: 20%; left: 15%;">🐾</div>
+    <div class="cat-paw" style="bottom: 25%; right: 5%;">🐾</div>
+    
+    <div class="container">
+        <header>
+            <h1 class="cat-title">猫耳朵（麻食）</h1>
+            <p class="subtitle">中国传统面食中的可爱美味</p>
+        </header>
+        
+        <section class="hero">
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1626266758505-5eb5d4d0e6b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="猫耳朵美食">
+            </div>
+            <div class="hero-content">
+                <h2 class="section-title">什么是猫耳朵？</h2>
+                <p>猫耳朵，又称麻食，是中国传统的一种面食，尤其在山西、陕西等地区非常流行。因其形状酷似小猫的耳朵而得名。</p>
+                <p>这种小巧玲珑的面食通常由小麦粉制成，经过手工捏制，形成中间微凹、边缘卷曲的独特形状，既可爱又美味。</p>
+                <p>猫耳朵可煮、可炒、可烩，搭配各种蔬菜和肉类，是一道色香味俱全的传统美食。</p>
+            </div>
+        </section>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>历史起源</h3>
+                <p>猫耳朵的历史可追溯到南宋时期，距今已有800多年历史。传说杭州名菜"猫耳朵"与清乾隆皇帝下江南有关。</p>
+                <p>在山西，猫耳朵被称为"碾疙瘩"或"碾饦饦"，是晋中地区人民最常吃的一种面食。</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>制作方法</h3>
+                <ul>
+                    <li>将面粉加水和成稍硬的面团</li>
+                    <li>擀成厚片，切成小方块</li>
+                    <li>用拇指按住面块向前推捻成猫耳状</li>
+                    <li>入沸水煮熟，捞出过凉水</li>
+                    <li>可配各种卤汁或炒制</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h3>营养价值</h3>
+                <ul>
+                    <li>碳水化合物提供丰富能量</li>
+                    <li>富含植物蛋白</li>
+                    <li>易消化吸收</li>
+                    <li>搭配蔬菜肉类更均衡</li>
+                    <li>低脂肪、低胆固醇</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>经典吃法</h3>
+                <ul>
+                    <li><strong>烩麻食：</strong>与蔬菜、肉丁、豆腐等烩制</li>
+                    <li><strong>炒麻食：</strong>类似炒面，加入鸡蛋和蔬菜</li>
+                    <li><strong>汤麻食：</strong>在鲜美汤底中煮制</li>
+                    <li><strong>凉拌麻食：</strong>夏季清爽吃法</li>
+                    <li><strong>酸汤麻食：</strong>山西特色酸汤口味</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h3>文化意义</h3>
+                <p>猫耳朵不仅是一种食物，更承载着丰富的文化内涵：</p>
+                <ul>
+                    <li>象征团圆美满</li>
+                    <li>体现手工面食技艺</li>
+                    <li>传统节日餐桌常客</li>
+                    <li>家庭温暖的象征</li>
+                    <li>北方饮食文化代表</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h3>趣味知识</h3>
+                <ul>
+                    <li>熟练的厨师一分钟可捻制60-80个</li>
+                    <li>最小的猫耳朵可如米粒大小</li>
+                    <li>在意大利有类似食物"Orecchiette"</li>
+                    <li>杭州"知味观"的猫耳朵最负盛名</li>
+                    <li>山西人家家户户都会制作</li>
+                </ul>
+            </div>
+        </div>
+        
+        <section class="qrcode-section">
+            <h2 class="section-title">扫码了解更多美食</h2>
+            <p>使用手机扫描二维码，查看更多传统美食制作方法和食谱</p>
+            
+            <div class="qrcode-container floating">
+                <span class="qrcode-label">扫描二维码</span>
+                <div class="qrcode">
+                    <i class="fas fa-qrcode"></i>
+                    <span>猫耳朵美食介绍</span>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer class="footer">
+        <p>© 2023 中国传统美食文化 | 猫耳朵（麻食）专题介绍</p>
+        <p>传承美食文化，品味中华精髓</p>
+    </footer>
+    
+    <script>
+        // 小猫耳朵光标效果
+        const cursor = document.querySelector('.cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+        });
+        
+        // 交互元素放大效果
+        const interactiveElements = document.querySelectorAll('.info-card, .hero-image, .qrcode-container');
+        
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+        
+        // 添加一些动态效果
+        document.addEventListener('DOMContentLoaded', () => {
+            const paws = document.querySelectorAll('.cat-paw');
+            paws.forEach((paw, index) => {
+                paw.style.animation = `float ${3 + index}s ease-in-out infinite`;
+                paw.style.animationDelay = `${index * 0.5}s`;
+            });
+        });
+    </script>
+</body>
+</html>
